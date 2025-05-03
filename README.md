@@ -1,8 +1,36 @@
-# React + Vite
+# Project WTWR
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description:
 
-Currently, two official plugins are available:
+This project is a weather-based clothing recommendation app. It displays the user's current location, date, and temperature, and suggests appropriate articles of clothing based on the current weather conditions.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies and Techniques:
+
+-React Framework:
+-Using React components.
+-React DOM for rendering.
+-JSX syntax for component structure.
+
+-Modern JavaScript:
+-ES6+ features.
+-Module imports/exports.
+-Arrow functions.
+-Event handling.
+
+-CSS Techniques:
+-Flexbox layout. (display: flex, flex-direction, align-items.)
+-CSS positioning. (both relative and absolute positioning.)
+-CSS Box Model. (margins, padding.)
+-CSS Custom Properties. (variables.)
+-CSS imports.
+-CSS Modules for component styling.
+
+-Styling Practices:
+-BEM (Block Element Modifier.)
+-Responsive design considerations.
+-Font customization using external font files.
+
+-Component Architecture:
+-Modular component structure.
+-Props passing between components.
+-Event handling with callback functions.
