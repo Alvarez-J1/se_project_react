@@ -16,7 +16,7 @@ function ModalWithForm({
         <form className="modal__form">
           {children}
           <button type="submit" className="modal__submit">
-            /
+            Add Garment
           </button>
           {buttonText}
         </form>
