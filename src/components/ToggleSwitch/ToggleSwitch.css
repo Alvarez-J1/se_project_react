@@ -1,0 +1,67 @@
+.toggle-switch {
+  width: 56px;
+  height: 28px;
+  border: 2px solid rgba(126, 126, 126, 1);
+  border-radius: 20px;
+  cursor: pointer;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: 20px;
+  position: relative;
+}
+
+.toggle-switch__checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__circle {
+  left: 28px;
+}
+
+.toggle-switch__circle {
+  width: 28px;
+  height: 28px;
+  background-color: black;
+  position: absolute;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.toggle-switch:hover {
+  border: 2px solid black;
+}
+.toggle-switch__text {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+}
+
+.toggle-switch__text_F {
+  position: absolute;
+  color: rgba(255, 255, 255, 1);
+  top: 7px;
+  left: 10px;
+}
+
+.toggle-switch__checkbox:checked ~ .toggle-switch__text_F {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.toggle-switch__text_C {
+  position: absolute;
+  color: rgba(0, 0, 0, 0.5);
+  top: 7px;
+  left: 37px;
+}
+.toggle-switch__checkbox:checked ~ .toggle-switch__text_C {
+  color: rgba(255, 255, 255, 1);
+}
+
+.toggle-switch__text_C:hover {
+  position: absolute;
+  color: rgba(0, 0, 0, 1);
+  top: 7px;
+  left: 37px;
+}

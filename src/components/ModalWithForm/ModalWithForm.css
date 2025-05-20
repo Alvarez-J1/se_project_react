@@ -15,17 +15,6 @@
   visibility: visible;
 }
 
-.modal__content {
-  background-color: rgba(255, 255, 255, 1);
-  position: relative;
-  height: 436px;
-  border-radius: 20px;
-  padding: 28px 28px 36px;
-  max-width: 496px;
-  box-sizing: border-box;
-  width: 100%;
-}
-
 .modal__form {
   display: flex;
   flex-direction: column;

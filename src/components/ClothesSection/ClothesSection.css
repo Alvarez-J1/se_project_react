@@ -1,0 +1,40 @@
+.clothes__section-title {
+  margin: 0;
+}
+
+.profile__clothing-items {
+  margin-top: -38px;
+  padding-left: 345px;
+}
+.clothes-section {
+  margin: 0;
+  overflow: hidden;
+}
+.add__new-btn {
+  padding: 0;
+  border: none;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.clothes__header {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 16px;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+}
+
+.clothes-section__items {
+  width: 1015px;
+  height: 676px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
