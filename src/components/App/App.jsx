@@ -17,6 +17,7 @@ import {
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { addItems, getItems, deleteItems } from "../../utils/api";
+import { useForm } from "../../hooks/useForm";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -110,6 +111,7 @@ function App() {
                   <Profile
                     onCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    handleAddClick={handleAddClick}
                   />
                 }
               />{" "}

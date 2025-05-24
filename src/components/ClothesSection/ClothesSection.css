@@ -8,7 +8,7 @@
 }
 .clothes-section {
   margin: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .add__new-btn {
   padding: 0;
@@ -16,6 +16,7 @@
   color: rgba(0, 0, 0, 0.6);
   font-weight: 700;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .clothes__header {
@@ -30,11 +31,15 @@
 
 .clothes-section__items {
   width: 1015px;
-  height: 676px;
+  /* height: 676px; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
   padding: 0;
   margin: 0;
+  overflow-y: auto; /* Add this line */
+  max-height: calc(
+    100vh - 120px
+  ); /* Add this - adjust 120px based on your header height */
 }

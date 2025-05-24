@@ -27,4 +27,4 @@ function processResponse(res) {
   return Promise.reject(`Error: ${res.status}`);
 }
 
-export { getItems, addItems, deleteItems };
+export { getItems, addItems, deleteItems, processResponse };
