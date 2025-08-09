@@ -4,19 +4,23 @@ function getItems() {
   return fetch(`${baseUrl}/items`).then(processResponse);
 }
 
-function addItems({ name, imageUrl, weather }) {
+function addItems({ name, imageUrl, weather, token }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, imageUrl, weather }),
   }).then(processResponse);
 }
 
-function deleteItems(cardId) {
+function deleteItems(cardId, token) {
   return fetch(`${baseUrl}/items/${cardId}`, {
     method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   }).then(processResponse);
 }
 
