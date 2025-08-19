@@ -1,0 +1,12 @@
+.modal__content--sp {
+  height: 456px;
+}
+
+.modal__submit.modal__submit--signup {
+  margin-top: 32px;
+  background-color: #000000;
+}
+
+.modal__submit.modal__submit--signup:disabled {
+  background-color: #0000004d;
+}

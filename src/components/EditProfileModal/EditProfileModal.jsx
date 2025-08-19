@@ -1,4 +1,5 @@
-import React, { useEffect, useContext } from "react";
+import "./EditProfileModal.css";
+import { useEffect, useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
@@ -12,25 +13,31 @@ export default function EditProfileModal({ isOpen, onClose, onEditProfile }) {
 
   useEffect(() => {
     if (isOpen && currentUser) {
-      setValues({ name: currentUser.name, avatar: currentUser.avatar });
+      setValues({
+        name: currentUser.name || "",
+        avatar: currentUser.avatar || "",
+      });
     }
-  }),
-    [currentUser, isOpen];
+  }, [currentUser, isOpen, setValues]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onEditProfile(values);
   };
+
   return (
     <ModalWithForm
       title="Change profile data"
-      buttonText="Change profile data"
+      buttonText="Save changes"
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      variant="edit-profile"
+      contentClassName="modal__content--sm"
+      submitClassName="modal__submit--dark"
     >
       <label htmlFor="name" className="modal__label">
-        Name<span className="modal__required">*</span>
+        Name<span className="modal__required"> *</span>
         <input
           type="text"
           className="modal__input"
@@ -45,14 +52,13 @@ export default function EditProfileModal({ isOpen, onClose, onEditProfile }) {
         />
       </label>
       <label htmlFor="avatar" className="modal__label">
-        Avatar<span className="modal__required">*</span>
+        Avatar<span className="modal__required"> *</span>
         <input
           type="url"
           className="modal__input"
           id="avatar"
           name="avatar"
           placeholder="Avatar Url"
-          required
           minLength="1"
           maxLength="999"
           onChange={handleChange}

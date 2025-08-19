@@ -12,9 +12,12 @@ function Header({
   isLoggedIn,
   onLoginClick,
   onRegisterClick,
-  onLogout,
 }) {
   const currentUser = useContext(CurrentUserContext);
+  const name = currentUser?.name || "";
+  const avatar = currentUser?.avatar || "";
+  const initial = (name || "").charAt(0).toUpperCase();
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -41,34 +44,29 @@ function Header({
           </button>
           <Link to="/profile" className="header__link">
             <div className="header__user-container">
-              <p className="header__username">{currentUser.name}</p>
+              <p className="header__username">{name || "User"}</p>
 
-              {currentUser.avatar ? (
+              {avatar ? (
                 <img
-                  src={currentUser.avatar}
+                  src={avatar}
                   alt="User avatar "
                   className="header__avatar"
                 />
               ) : (
-                <div className="header__avatar-placeholder">
-                  {currentUser.name.charAt(0).toUpperCase()}
-                </div>
+                <div className="header__avatar-placeholder">{initial}</div>
               )}
             </div>
           </Link>
-          <button
-            type="button"
-            onClick={onLogout}
-            className="header__logout-btn"
-          >
-            Log out
-          </button>
         </>
       ) : (
         // Non-authorized view
         <div>
-          <button onClick={onRegisterClick}>Sign Up</button>
-          <button onClick={onLoginClick}>Log In</button>
+          <button className="header__signup-btn" onClick={onRegisterClick}>
+            Sign Up
+          </button>
+          <button className="header__signin-btn" onClick={onLoginClick}>
+            Log In
+          </button>
         </div>
       )}
     </header>

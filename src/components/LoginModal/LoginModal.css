@@ -1,0 +1,29 @@
+.modal__content--si {
+  height: 348px;
+}
+
+.modal__submit.modal__submit--si {
+  margin-top: 32px;
+  background-color: #000000;
+}
+
+.modal__submit.modal__submit--si:disabled {
+  background-color: #0000004d;
+}
+
+.modal__error {
+  color: #ff4d00;
+  display: block;
+  margin-top: 24px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: Cabinet Grotesk;
+}
+
+.modal__label--error {
+  color: black;
+  font-weight: 600;
+}
+.input-error {
+  border-bottom: 2px solid #ff3b00;
+}

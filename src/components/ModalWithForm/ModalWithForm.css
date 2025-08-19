@@ -128,13 +128,22 @@
   margin: 0;
   width: 124px;
   height: 36px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #0000004d;
   color: rgba(255, 255, 255, 1);
-  border: none;
   cursor: pointer;
   font-family: Cabinet Grotesk;
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
   border-radius: 4px;
+  border: 2px solid transparent; /* <- add this */
+  box-sizing: border-box;
+}
+
+.modal__submit:hover {
+  background-color: #00000099;
+}
+
+.modal__submit:disabled {
+  background-color: #0000004d;
 }

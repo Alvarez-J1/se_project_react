@@ -1,6 +1,14 @@
 .sidebar {
   display: flex;
+  gap: 16px;
+  flex-direction: column; /* stack avatar/name and buttons vertically */
+  align-items: flex-start;
+}
+
+.sidebar__top {
+  display: flex;
   flex-direction: row;
+  justify-content: space-between;
   gap: 16px;
 }
 
@@ -14,4 +22,48 @@
 .sidebar__avatar {
   width: 56px;
   height: 56px;
+  border-radius: 50%;
+}
+
+.sidebar__profile-data {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* space between buttons */
+}
+
+.sidebar__edit-btn {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  color: #000000;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.sidebar__logout-btn {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  color: #000000;
+  border: none;
+  padding: 0;
+  margin-left: -101px;
+  cursor: pointer;
+}
+
+.sidebar__avatar-placeholder {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: white;
+  text-transform: uppercase;
 }

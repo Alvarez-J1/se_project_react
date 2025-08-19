@@ -29,6 +29,11 @@ export default function RegisterModal({ onClose, isOpen, onRegister }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      contentClassName="modal__content--sp"
+      submitClassName="modal__submit--signup"
+      disabled={
+        !values.email || !values.password || !values.name || !values.avatar
+      }
     >
       <label htmlFor="email" className="modal__label">
         Email<span className="modal__required">*</span>
@@ -76,7 +81,7 @@ export default function RegisterModal({ onClose, isOpen, onRegister }) {
         />
       </label>
       <label htmlFor="avatar" className="modal__label">
-        Avatar Url<span className="modal__required">*</span>
+        Avatar URL<span className="modal__required">*</span>
         <input
           type="text"
           className="modal__input"

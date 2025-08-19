@@ -23,6 +23,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import { addItems, getItems, deleteItems } from "../../utils/api";
 import { useForm } from "../../hooks/useForm";
 import * as auth from "../../utils/auth";
+import * as api from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -47,12 +48,12 @@ function App() {
     auth
       .signUp({ email, password, name, avatar })
       .then(() => {
-        return auth.logIn(email, password);
+        return auth.logIn({ email, password });
       })
       .then((data) => {
-        if (data.jwt) {
-          setToken(data.jwt);
-          localStorage.setItem("jwt", data.jwt);
+        if (data.token) {
+          setToken(data.token);
+          localStorage.setItem("jwt", data.token);
           setCurrentUser(data.user);
           closeRegisterModal();
           setIsLoggedIn(true);
@@ -65,20 +66,29 @@ function App() {
   };
 
   const handleLogin = ({ email, password }) => {
-    auth
+    return auth
       .logIn({ email, password })
       .then((data) => {
-        if (data.jwt) {
-          setToken(data.jwt);
-          localStorage.setItem("jwt", data.jwt);
+        if (data.token) {
+          setToken(data.token);
+          localStorage.setItem("jwt", data.token);
           setCurrentUser(data.user);
           closeLoginModal();
           setIsLoggedIn(true);
-          navigate("/profile");
+          navigate("/");
         }
+        return data;
       })
       .catch((err) => {
-        console.error("Login error:", err);
+        const status =
+          err?.status ?? err?.response?.status ?? Number(err?.message);
+
+        if (status === 401) {
+          const e = new Error("INVALID_CREDENTIALS");
+          e.code = "INVALID_CREDENTIALS";
+          throw e;
+        }
+        throw err;
       });
   };
 
@@ -92,6 +102,23 @@ function App() {
       .catch((err) => {
         console.error("Update failed", err);
       });
+  };
+
+  const handleCardLike = (item) => {
+    const token = localStorage.getItem("jwt");
+    const id = item._id;
+    const isLiked = item.likes?.some((uid) => uid === currentUser._id);
+    const action = isLiked
+      ? api.removeCardLike(id, token)
+      : api.addCardLike(id, token);
+
+    action
+      .then((updatedCard) => {
+        setClothingItems((cards) =>
+          cards.map((c) => (c._id === id ? updatedCard : c))
+        );
+      })
+      .catch(console.error);
   };
 
   const handleLogout = () => {
@@ -144,7 +171,8 @@ function App() {
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-    addItems({ name, imageUrl, weather })
+    api
+      .addItems({ name, imageUrl, weather, token })
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
@@ -153,7 +181,7 @@ function App() {
   };
 
   const handleDeleteItemModalSubmit = (cardId) => {
-    deleteItems(cardId)
+    deleteItems(cardId, token)
       .then(() => {
         setClothingItems(clothingItems.filter((item) => item._id !== cardId));
         closeActiveModal();
@@ -209,7 +237,6 @@ function App() {
               isLoggedIn={isLoggedIn}
               onLoginClick={openLoginModal}
               onRegisterClick={openRegisterModal}
-              onLogout={handleLogout}
             />
             <Routes>
               {" "}
@@ -220,6 +247,7 @@ function App() {
                     weatherData={weatherData}
                     onCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -232,6 +260,8 @@ function App() {
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
                       onEditProfileClick={openEditProfileModal}
+                      onCardLike={handleCardLike}
+                      onLogout={handleLogout}
                     />
                   </ProtectedRoute>
                 }
@@ -250,6 +280,7 @@ function App() {
             card={selectedCard}
             onClose={closeActiveModal}
             onDeleteItem={handleDeleteItemModalSubmit}
+            onCardLike={handleCardLike}
           />
           <RegisterModal
             isOpen={activeModal === "register"}

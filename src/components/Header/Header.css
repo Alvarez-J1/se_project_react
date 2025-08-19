@@ -41,16 +41,55 @@
 .header__username {
   margin-right: 12px;
   margin-left: 0;
-  margin-top: 0;
+  margin-top: 8px;
   margin-bottom: 0;
   font-weight: 700;
   font-size: 20px;
   line-height: 100%;
   width: 157px;
   height: 25px;
+  font-family: Cabinet Grotesk;
 }
 
 .header__link {
   text-decoration: none;
   color: rgba(0, 0, 0, 1);
+}
+
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.header__avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: white;
+  text-transform: uppercase;
+}
+
+.header__signup-btn {
+  border: none;
+  font-family: Cabinet Grotesk;
+  color: #000000;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.header__signin-btn {
+  border: none;
+  font-family: Cabinet Grotesk;
+  color: #000000;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
 }

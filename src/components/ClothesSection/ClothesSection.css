@@ -1,5 +1,5 @@
 .clothes__section-title {
-  margin: 0;
+  margin-top: -66px;
 }
 
 .profile__clothing-items {
@@ -17,6 +17,7 @@
   font-weight: 700;
   font-size: 20px;
   cursor: pointer;
+  margin-top: -113px;
 }
 
 .clothes__header {

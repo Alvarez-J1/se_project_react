@@ -1,0 +1,9 @@
+.modal__content--sm {
+  width: 496px;
+  height: 304px;
+}
+
+.modal__submit--dark {
+  background-color: #000000;
+  margin-top: 32px;
+}
