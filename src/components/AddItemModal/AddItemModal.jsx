@@ -1,4 +1,3 @@
-import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 import { useEffect } from "react";
@@ -37,12 +36,12 @@ export default function AddItemModal({
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="addItemModal__name" className="modal__label">
         Name
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="addItemModal__name"
           name="name"
           placeholder="Name"
           required

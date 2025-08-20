@@ -4,7 +4,7 @@ function getItems() {
   return fetch(`${baseUrl}/items`).then(processResponse);
 }
 
-function addItems({ name, imageUrl, weather, token }) {
+function addItem({ name, imageUrl, weather, token }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -15,7 +15,7 @@ function addItems({ name, imageUrl, weather, token }) {
   }).then(processResponse);
 }
 
-function deleteItems(cardId, token) {
+function deleteItem(cardId, token) {
   return fetch(`${baseUrl}/items/${cardId}`, {
     method: "DELETE",
     headers: {
@@ -53,8 +53,8 @@ function processResponse(res) {
 
 export {
   getItems,
-  addItems,
-  deleteItems,
+  addItem,
+  deleteItem,
   addCardLike,
   removeCardLike,
   processResponse,

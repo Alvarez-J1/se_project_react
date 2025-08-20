@@ -36,12 +36,12 @@ export default function EditProfileModal({ isOpen, onClose, onEditProfile }) {
       contentClassName="modal__content--sm"
       submitClassName="modal__submit--dark"
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="editProfileModal__name" className="modal__label">
         Name<span className="modal__required"> *</span>
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="editProfileModal__name"
           name="name"
           placeholder="Your Name"
           required
@@ -51,12 +51,12 @@ export default function EditProfileModal({ isOpen, onClose, onEditProfile }) {
           value={values.name}
         />
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label htmlFor="editProfileModal__avatar" className="modal__label">
         Avatar<span className="modal__required"> *</span>
         <input
           type="url"
           className="modal__input"
-          id="avatar"
+          id="editProfileModal__avatar"
           name="avatar"
           placeholder="Avatar Url"
           minLength="1"

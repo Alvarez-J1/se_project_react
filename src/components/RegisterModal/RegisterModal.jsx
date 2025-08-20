@@ -50,12 +50,12 @@ export default function RegisterModal({ onClose, isOpen, onRegister }) {
           value={values.email}
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="registerModal__password" className="modal__label">
         Password<span className="modal__required">*</span>
         <input
           type="password"
           className="modal__input"
-          id="password"
+          id="registerModal__password"
           name="password"
           placeholder="Password"
           required
@@ -65,12 +65,12 @@ export default function RegisterModal({ onClose, isOpen, onRegister }) {
           value={values.password}
         />
       </label>
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="registerModal__name" className="modal__label">
         Name<span className="modal__required">*</span>
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="registerModal__name"
           name="name"
           placeholder="Name"
           required
@@ -80,12 +80,12 @@ export default function RegisterModal({ onClose, isOpen, onRegister }) {
           value={values.name}
         />
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label htmlFor="registerModal__avatar" className="modal__label">
         Avatar URL<span className="modal__required">*</span>
         <input
           type="text"
           className="modal__input"
-          id="avatar"
+          id="registerModal__avatar"
           name="avatar"
           placeholder="Avatar Url"
           required

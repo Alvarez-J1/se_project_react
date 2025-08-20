@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, useNavigate } from "react-router-dom";
-import { Routes, Route } from "react-router-dom";
+import { useNavigate, Routes, Route } from "react-router-dom";
 import "./App.css";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Header from "../Header/Header";
@@ -20,8 +19,7 @@ import {
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { addItems, getItems, deleteItems } from "../../utils/api";
-import { useForm } from "../../hooks/useForm";
+import { getItems, deleteItem } from "../../utils/api";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
 
@@ -45,23 +43,30 @@ function App() {
   const navigate = useNavigate();
 
   const handleRegistration = ({ email, password, name, avatar }) => {
-    auth
+    return auth
       .signUp({ email, password, name, avatar })
       .then(() => {
         return auth.logIn({ email, password });
       })
       .then((data) => {
-        if (data.token) {
-          setToken(data.token);
+        if (!data?.token) return;
+        return auth.checkToken(data.token).then((user) => {
           localStorage.setItem("jwt", data.token);
-          setCurrentUser(data.user);
-          closeRegisterModal();
+          setToken(data.token);
+          setCurrentUser(user);
           setIsLoggedIn(true);
+          closeRegisterModal();
           navigate("/");
-        }
+          return data;
+        });
       })
       .catch((err) => {
+        localStorage.removeItem("jwt");
+        setToken("");
+        setCurrentUser({ email: "", name: "", avatar: "" });
+        setIsLoggedIn(false);
         console.error("Registration error:", err);
+        throw err;
       });
   };
 
@@ -70,14 +75,26 @@ function App() {
       .logIn({ email, password })
       .then((data) => {
         if (data.token) {
-          setToken(data.token);
-          localStorage.setItem("jwt", data.token);
-          setCurrentUser(data.user);
-          closeLoginModal();
-          setIsLoggedIn(true);
-          navigate("/");
+          return auth
+            .checkToken(data.token)
+            .then((user) => {
+              localStorage.setItem("jwt", data.token);
+              setToken(data.token);
+              setCurrentUser(user);
+              setIsLoggedIn(true);
+              closeLoginModal();
+              navigate("/");
+              return data;
+            })
+            .catch((err) => {
+              localStorage.removeItem("jwt");
+              setToken("");
+              setCurrentUser({ email: "", name: "", avatar: "" });
+              setIsLoggedIn(false);
+              console.error("Token validation failed", err);
+              throw err;
+            });
         }
-        return data;
       })
       .catch((err) => {
         const status =
@@ -123,6 +140,7 @@ function App() {
 
   const handleLogout = () => {
     localStorage.removeItem("jwt");
+    setToken("");
     setIsLoggedIn(false);
     setCurrentUser({ email: "", name: "", avatar: "" });
   };
@@ -172,7 +190,7 @@ function App() {
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
     api
-      .addItems({ name, imageUrl, weather, token })
+      .addItem({ name, imageUrl, weather, token })
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
@@ -181,7 +199,7 @@ function App() {
   };
 
   const handleDeleteItemModalSubmit = (cardId) => {
-    deleteItems(cardId, token)
+    deleteItem(cardId, token)
       .then(() => {
         setClothingItems(clothingItems.filter((item) => item._id !== cardId));
         closeActiveModal();
@@ -220,6 +238,9 @@ function App() {
         .catch((err) => {
           console.error("Token invalid or expired", err);
           localStorage.removeItem("jwt");
+          setToken("");
+          setCurrentUser({ email: "", name: "", avatar: "" });
+          setIsLoggedIn(false);
         });
     }
   }, []);

@@ -54,14 +54,14 @@ export default function LoginModal({ onClose, isOpen, onLogin }) {
       submitClassName="modal__submit--si"
       disabled={!values.email || !values.password}
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="loginModal__email" className="modal__label">
         Email
         <input
           type="email"
           className={`modal__input ${
             wrongField === "email" ? "input-error" : ""
           }`}
-          id="email"
+          id="loginModal__email"
           name="email"
           placeholder="Email"
           required
@@ -72,7 +72,7 @@ export default function LoginModal({ onClose, isOpen, onLogin }) {
         />
       </label>
       <label
-        htmlFor="password"
+        htmlFor="loginModal__password"
         className={`modal__label ${
           wrongField === "password" ? "modal__label--error" : ""
         }`}
@@ -86,7 +86,7 @@ export default function LoginModal({ onClose, isOpen, onLogin }) {
         className={`modal__input ${
           wrongField === "password" ? "input-error" : ""
         }`}
-        id="password"
+        id="loginModal__password"
         name="password"
         placeholder="Password"
         required
