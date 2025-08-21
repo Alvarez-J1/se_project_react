@@ -10,14 +10,18 @@ function ClothesSection({
   onCardLike,
 }) {
   const currentUser = useContext(CurrentUserContext);
-  const _id = currentUser?._id || "";
-  const userItems = clothingItems.filter((item) => item.owner === _id);
+  const userId = currentUser?.userId || "";
+  const userItems = clothingItems.filter((item) => item.owner === userId);
 
   return (
     <div className="clothes-section">
-      <div className="clothes__header">
-        <p className="clothes__section-title">Your items</p>
-        <button onClick={handleAddClick} type="button" className="add__new-btn">
+      <div className="clothes-section__header">
+        <p className="clothes-section__title">Your items</p>
+        <button
+          onClick={handleAddClick}
+          type="button"
+          className="clothes-section__add-btn"
+        >
           + Add new
         </button>
       </div>

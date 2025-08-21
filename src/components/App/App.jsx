@@ -12,7 +12,7 @@ import LoginModal from "../LoginModal/LoginModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import {
-  APIkey,
+  apiKey,
   coordinates,
   defaultClothingItems,
 } from "../../utils/constants";
@@ -34,6 +34,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAuthChecking, setIsAuthChecking] = useState(true);
   const [currentUser, setCurrentUser] = useState({
     email: "",
     name: "",
@@ -208,7 +209,7 @@ function App() {
   };
 
   useEffect(() => {
-    getWeather(coordinates, APIkey)
+    getWeather(coordinates, apiKey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
@@ -226,23 +227,30 @@ function App() {
   }, []);
 
   useEffect(() => {
+    setIsAuthChecking(true);
     const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      auth
-        .checkToken(jwt)
-        .then((user) => {
-          setToken(jwt);
-          setCurrentUser(user);
-          setIsLoggedIn(true);
-        })
-        .catch((err) => {
-          console.error("Token invalid or expired", err);
-          localStorage.removeItem("jwt");
-          setToken("");
-          setCurrentUser({ email: "", name: "", avatar: "" });
-          setIsLoggedIn(false);
-        });
+
+    if (!jwt) {
+      setIsLoggedIn(false);
+      setIsAuthChecking(false);
+      return;
     }
+
+    auth
+      .checkToken(jwt)
+      .then((user) => {
+        setToken(jwt);
+        setCurrentUser(user);
+        setIsLoggedIn(true);
+      })
+      .catch((err) => {
+        console.error("Token invalid or expired", err);
+        localStorage.removeItem("jwt");
+        setToken("");
+        setCurrentUser({ email: "", name: "", avatar: "" });
+        setIsLoggedIn(false);
+      })
+      .finally(() => setIsAuthChecking(false));
   }, []);
 
   return (
@@ -260,7 +268,6 @@ function App() {
               onRegisterClick={openRegisterModal}
             />
             <Routes>
-              {" "}
               <Route
                 path="/"
                 element={
@@ -275,7 +282,13 @@ function App() {
               <Route
                 path="profile"
                 element={
-                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <ProtectedRoute
+                    isLoggedIn={isLoggedIn}
+                    isAuthChecking={isAuthChecking}
+                    fallback={
+                      <div className="app__loader">Checking session…</div>
+                    }
+                  >
                     <Profile
                       onCardClick={handleCardClick}
                       clothingItems={clothingItems}
@@ -286,7 +299,7 @@ function App() {
                     />
                   </ProtectedRoute>
                 }
-              />{" "}
+              />
             </Routes>
 
             <Footer />
