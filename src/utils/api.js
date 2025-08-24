@@ -58,4 +58,5 @@ export {
   addCardLike,
   removeCardLike,
   processResponse,
+  baseUrl,
 };

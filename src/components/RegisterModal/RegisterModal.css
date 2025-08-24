@@ -10,3 +10,17 @@
 .modal__submit.modal__submit--signup:disabled {
   background-color: #0000004d;
 }
+
+.registerModal__switch {
+  border: 0;
+  background-color: white;
+  padding: 0;
+  position: absolute;
+  bottom: 48px;
+  right: 272px;
+  color: #00000080;
+  cursor: pointer;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 16px;
+}

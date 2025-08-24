@@ -3,7 +3,12 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 import { useEffect, useState } from "react";
 
-export default function LoginModal({ onClose, isOpen, onLogin }) {
+export default function LoginModal({
+  onClose,
+  isOpen,
+  onLogin,
+  onOpenRegister,
+}) {
   const { values, handleChange, setValues } = useForm({
     email: "",
     password: "",
@@ -97,6 +102,13 @@ export default function LoginModal({ onClose, isOpen, onLogin }) {
       />
 
       {loginError && <span className="modal__error">{loginError}</span>}
+      <button
+        type="button"
+        className="loginModal__switch"
+        onClick={onOpenRegister}
+      >
+        or Sign Up
+      </button>
     </ModalWithForm>
   );
 }

@@ -1,6 +1,4 @@
-import { processResponse } from "./api";
-
-const baseUrl = "http://localhost:3001";
+import { processResponse, baseUrl } from "./api";
 
 function signUp({ email, password, name, avatar }) {
   return fetch(`${baseUrl}/signup`, {

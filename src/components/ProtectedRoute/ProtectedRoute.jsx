@@ -9,10 +9,5 @@ export default function ProtectedRoute({
 }) {
   if (isAuthChecking) return fallback ?? null;
   return isLoggedIn ? children : <Navigate to={redirectTo} replace />;
+  // replace means it won’t keep the current URL in history, so the user can’t hit “back” and end up on a protected page again.
 }
-
-//   if (!isLoggedIn) {
-//     return <Navigate to="/" replace />;
-//   }
-//   return children;
-// }

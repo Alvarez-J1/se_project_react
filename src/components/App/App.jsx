@@ -1,6 +1,10 @@
+// React imports
 import { useEffect, useState } from "react";
 import { useNavigate, Routes, Route } from "react-router-dom";
+
+// Components
 import "./App.css";
+import AddItemModal from "../AddItemModal/AddItemModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -10,18 +14,21 @@ import ItemModal from "../ItemModal/ItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
+
+// Utils
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import {
   apiKey,
   coordinates,
   defaultClothingItems,
 } from "../../utils/constants";
-import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
-import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, deleteItem } from "../../utils/api";
 import * as auth from "../../utils/auth";
 import * as api from "../../utils/api";
+
+// Contexts
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -56,7 +63,7 @@ function App() {
           setToken(data.token);
           setCurrentUser(user);
           setIsLoggedIn(true);
-          closeRegisterModal();
+          closeActiveModal();
           navigate("/");
           return data;
         });
@@ -83,7 +90,7 @@ function App() {
               setToken(data.token);
               setCurrentUser(user);
               setIsLoggedIn(true);
-              closeLoginModal();
+              closeActiveModal();
               navigate("/");
               return data;
             })
@@ -115,7 +122,7 @@ function App() {
       .editProfile({ name, avatar }, token)
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
-        closeEditProfileModal();
+        closeActiveModal();
       })
       .catch((err) => {
         console.error("Update failed", err);
@@ -173,19 +180,7 @@ function App() {
     setActiveModal("edit-profile");
   };
 
-  const closeRegisterModal = () => {
-    setActiveModal("");
-  };
-
   const closeActiveModal = () => {
-    setActiveModal("");
-  };
-
-  const closeLoginModal = () => {
-    setActiveModal("");
-  };
-
-  const closeEditProfileModal = () => {
     setActiveModal("");
   };
 
@@ -223,7 +218,9 @@ function App() {
         console.log("API Data:", data);
         setClothingItems(data);
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Failed to fetch weather data", err);
+      });
   }, []);
 
   useEffect(() => {
@@ -318,19 +315,20 @@ function App() {
           />
           <RegisterModal
             isOpen={activeModal === "register"}
-            onClose={closeRegisterModal}
+            onClose={closeActiveModal}
             onRegister={handleRegistration}
+            onOpenLogin={openLoginModal}
           />
           <LoginModal
             isOpen={activeModal === "login"}
-            onClose={closeLoginModal}
+            onClose={closeActiveModal}
             onLogin={handleLogin}
+            onOpenRegister={openRegisterModal}
           />
           <EditProfileModal
             isOpen={activeModal === "edit-profile"}
-            onClose={closeEditProfileModal}
+            onClose={closeActiveModal}
             onEditProfile={handleEditProfile}
-            currentUser={currentUser}
           />
         </div>
       </CurrentTemperatureUnitContext.Provider>

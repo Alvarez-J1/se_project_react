@@ -3,7 +3,12 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../hooks/useForm";
 import { useEffect } from "react";
 
-export default function RegisterModal({ onClose, isOpen, onRegister }) {
+export default function RegisterModal({
+  onClose,
+  isOpen,
+  onRegister,
+  onOpenLogin,
+}) {
   const { values, handleChange, setValues } = useForm({
     email: "",
     password: "",
@@ -95,6 +100,13 @@ export default function RegisterModal({ onClose, isOpen, onRegister }) {
           value={values.avatar}
         />
       </label>
+      <button
+        type="button"
+        onClick={onOpenLogin}
+        className="registerModal__switch"
+      >
+        or Log In
+      </button>
     </ModalWithForm>
   );
 }
