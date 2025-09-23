@@ -1,11 +1,11 @@
-const baseUrl = "http://localhost:3001";
+import { BASE_URL } from "./constants";
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then(processResponse);
+  return fetch(`${BASE_URL}/items`).then(processResponse);
 }
 
 function addItem({ name, imageUrl, weather, token }) {
-  return fetch(`${baseUrl}/items`, {
+  return fetch(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -16,7 +16,7 @@ function addItem({ name, imageUrl, weather, token }) {
 }
 
 function deleteItem(cardId, token) {
-  return fetch(`${baseUrl}/items/${cardId}`, {
+  return fetch(`${BASE_URL}/items/${cardId}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -25,7 +25,7 @@ function deleteItem(cardId, token) {
 }
 
 function addCardLike(id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+  return fetch(`${BASE_URL}/items/${id}/likes`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -35,7 +35,7 @@ function addCardLike(id, token) {
 }
 
 function removeCardLike(id, token) {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
+  return fetch(`${BASE_URL}/items/${id}/likes`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -58,5 +58,4 @@ export {
   addCardLike,
   removeCardLike,
   processResponse,
-  baseUrl,
 };

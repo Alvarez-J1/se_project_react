@@ -1,7 +1,9 @@
-import { processResponse, baseUrl } from "./api";
+import { processResponse } from "./api";
+
+import { BASE_URL } from "./constants";
 
 function signUp({ email, password, name, avatar }) {
-  return fetch(`${baseUrl}/signup`, {
+  return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -11,7 +13,7 @@ function signUp({ email, password, name, avatar }) {
 }
 
 function logIn({ email, password }) {
-  return fetch(`${baseUrl}/signin`, {
+  return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
@@ -19,7 +21,7 @@ function logIn({ email, password }) {
 }
 
 function checkToken(token) {
-  return fetch(`${baseUrl}/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -36,7 +38,7 @@ function editProfile({ name, avatar }, token) {
     payload.avatar = avatar.trim(); // could be '' if cleared
   }
 
-  return fetch(`${baseUrl}/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

@@ -48,4 +48,7 @@ export const coordinates = {
   longitude: -74.023567,
 };
 
+export const BASE_URL =
+  import.meta.env.VITE_API_URL ?? "https://api.gcp-demoo.jumpingcrab.com";
+
 export const apiKey = "52a30942f3977cf5f54d388ee9379f6d";
