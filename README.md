@@ -1,12 +1,13 @@
-# Project WTWR
+# WTWR (What To Wear Right Now) — Frontend
 
 # Backend Repo: https://github.com/Alvarez-J1/se_project_express
 
 ## Description:
 
-This project is a weather-based clothing recommendation app. It displays the user's current location, date, and temperature, and suggests appropriate articles of clothing based on the current weather conditions.
+WTWR is a weather-based clothing recommendation application.  
+It displays the user's current location, date, and temperature, and suggests appropriate clothing items based on current weather conditions.
 
-## Technologies and Techniques:
+## Technologies:
 
 -React Framework:
 -Using React components.
@@ -36,3 +37,22 @@ This project is a weather-based clothing recommendation app. It displays the use
 -Modular component structure.
 -Props passing between components.
 -Event handling with callback functions.
+
+## Project Details
+
+- Built using modular React components
+- Uses props and event handlers for component communication
+- Responsive layout designed with Flexbox
+- Styled using BEM for maintainable CSS structure
+
+## Backend
+
+This project connects to a Node.js and Express backend.
+
+Backend repository:  
+https://github.com/Alvarez-J1/se_project_express
+
+## Status
+
+The frontend is complete.  
+Live deployment is temporarily unavailable.
