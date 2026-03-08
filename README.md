@@ -31,4 +31,4 @@ https://github.com/Alvarez-J1/se_project_express
 ## Status
 
 The frontend is complete.  
-Live deployment is temporarily unavailable.
+Live demo: https://se-project-wtwr.onrender.com/
