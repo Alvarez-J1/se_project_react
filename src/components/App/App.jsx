@@ -21,6 +21,7 @@ import {
   defaultClothingItems,
   demoClothingItems,
   demoUser,
+  LOCAL_ITEM_LIKES_STORAGE_KEY,
 } from "../../utils/constants";
 import { deleteItem } from "../../utils/api";
 import * as auth from "../../utils/auth";
@@ -82,6 +83,69 @@ const cloneClothingItems = (items) =>
     likes: Array.isArray(item.likes) ? [...item.likes] : [],
   }));
 
+const getStoredLocalItemLikes = () => {
+  try {
+    const storedLikes = localStorage.getItem(LOCAL_ITEM_LIKES_STORAGE_KEY);
+
+    if (!storedLikes) return {};
+
+    const parsedLikes = JSON.parse(storedLikes);
+
+    if (!parsedLikes || typeof parsedLikes !== "object") {
+      return {};
+    }
+
+    return parsedLikes;
+  } catch {
+    return {};
+  }
+};
+
+const saveStoredLocalItemLikes = (likesByItemId) => {
+  if (Object.keys(likesByItemId).length === 0) {
+    localStorage.removeItem(LOCAL_ITEM_LIKES_STORAGE_KEY);
+    return;
+  }
+
+  localStorage.setItem(
+    LOCAL_ITEM_LIKES_STORAGE_KEY,
+    JSON.stringify(likesByItemId),
+  );
+};
+
+const mergeStoredLocalLikes = (items) => {
+  const likesByItemId = getStoredLocalItemLikes();
+
+  return cloneClothingItems(items).map((item) => {
+    const storedLikes = likesByItemId[normalizeId(item._id)];
+
+    if (!Array.isArray(storedLikes)) {
+      return item;
+    }
+
+    return {
+      ...item,
+      likes: storedLikes.map(normalizeId),
+    };
+  });
+};
+
+const persistLocalItemLikes = (item) => {
+  const likesByItemId = getStoredLocalItemLikes();
+  const itemId = normalizeId(item._id);
+  const likes = Array.isArray(item.likes) ? item.likes.map(normalizeId) : [];
+
+  likesByItemId[itemId] = likes;
+
+  saveStoredLocalItemLikes(likesByItemId);
+};
+
+const removeStoredLocalItemLikes = (itemId) => {
+  const likesByItemId = getStoredLocalItemLikes();
+  delete likesByItemId[normalizeId(itemId)];
+  saveStoredLocalItemLikes(likesByItemId);
+};
+
 function App() {
   const {
     weatherData,
@@ -90,7 +154,9 @@ function App() {
     locationStatus,
     requestLocation,
   } = useWeather();
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState(() =>
+    mergeStoredLocalLikes(defaultClothingItems),
+  );
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -126,6 +192,7 @@ function App() {
           localStorage.setItem("jwt", data.token);
           setToken(data.token);
           setCurrentUser(user);
+          setClothingItems(mergeStoredLocalLikes(defaultClothingItems));
           setIsLoggedIn(true);
           closeActiveModal();
           navigate("/");
@@ -154,6 +221,7 @@ function App() {
               localStorage.setItem("jwt", data.token);
               setToken(data.token);
               setCurrentUser(user);
+              setClothingItems(mergeStoredLocalLikes(defaultClothingItems));
               setIsLoggedIn(true);
               closeActiveModal();
               navigate("/");
@@ -213,13 +281,22 @@ function App() {
     const isLiked = isItemLikedByUser(item, userId);
 
     if (isDemoMode || !isApiItemId(id)) {
-      setClothingItems((cards) =>
-        cards.map((card) =>
+      setClothingItems((cards) => {
+        const updatedCards = cards.map((card) =>
           normalizeId(card._id) === normalizeId(id)
             ? toggleItemLike(card, userId)
             : card,
-        ),
-      );
+        );
+        const updatedCard = updatedCards.find(
+          (card) => normalizeId(card._id) === normalizeId(id),
+        );
+
+        if (updatedCard) {
+          persistLocalItemLikes(updatedCard);
+        }
+
+        return updatedCards;
+      });
       return;
     }
 
@@ -249,7 +326,7 @@ function App() {
     setIsDemoMode(false);
     setIsLoggedIn(false);
     setCurrentUser({ email: "", name: "", avatar: "" });
-    setClothingItems(defaultClothingItems);
+    setClothingItems(mergeStoredLocalLikes(defaultClothingItems));
     navigate("/");
   };
 
@@ -295,7 +372,7 @@ function App() {
     setIsDemoMode(true);
     setIsAuthChecking(false);
     setCurrentUser(demoUser);
-    setClothingItems(cloneClothingItems(demoClothingItems));
+    setClothingItems(mergeStoredLocalLikes(demoClothingItems));
     setIsLoggedIn(true);
     closeActiveModal();
     navigate("/profile");
@@ -332,6 +409,7 @@ function App() {
 
   const handleDeleteItemModalSubmit = (cardId) => {
     if (isDemoMode || !isApiItemId(cardId)) {
+      removeStoredLocalItemLikes(cardId);
       setClothingItems((items) => items.filter((item) => item._id !== cardId));
       closeActiveModal();
       return;
@@ -408,7 +486,7 @@ function App() {
       localStorage.removeItem("jwt");
       setToken("");
       setCurrentUser(demoUser);
-      setClothingItems(cloneClothingItems(demoClothingItems));
+      setClothingItems(mergeStoredLocalLikes(demoClothingItems));
       setIsLoggedIn(true);
       setIsDemoMode(true);
       setIsAuthChecking(false);
@@ -434,6 +512,7 @@ function App() {
         localStorage.removeItem("jwt");
         setToken("");
         setCurrentUser({ email: "", name: "", avatar: "" });
+        setClothingItems(mergeStoredLocalLikes(defaultClothingItems));
         setIsLoggedIn(false);
       })
       .finally(() => setIsAuthChecking(false));

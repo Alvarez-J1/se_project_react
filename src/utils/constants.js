@@ -101,6 +101,7 @@ export const demoClothingItems = defaultClothingItems.map((item, index) => ({
 }));
 
 export const DEMO_SESSION_STORAGE_KEY = "weatherfit-demo-session";
+export const LOCAL_ITEM_LIKES_STORAGE_KEY = "weatherfit-local-item-likes";
 
 export const coordinates = {
   latitude: 40.779442,
