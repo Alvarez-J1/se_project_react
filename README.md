@@ -6,7 +6,7 @@ It displays the user's current location, date, and temperature, and suggests app
 
 ## Live Demo
 
-https://weatherfit-app.onrender.com/
+https://weather-fit-phi.vercel.app/
 
 ## Features
 
