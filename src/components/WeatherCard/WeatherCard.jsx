@@ -55,7 +55,7 @@ function WeatherCard({
             onClick={onUseMyLocation}
             disabled={isWeatherLoading || isLocating}
           >
-            {isLocating ? "Locating…" : "Use My Location"}
+            {isLocating ? "Locating..." : "Use My Location"}
           </button>
 
           {weatherError ? (
