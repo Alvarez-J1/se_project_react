@@ -80,6 +80,7 @@ export default function AddItemModal({
             value="hot"
             onChange={handleChange}
             checked={values.weather === "hot"}
+            required
           />
           <span>Hot</span>
         </label>
