@@ -11,11 +11,11 @@ function ThemeToggle({ theme, onToggleTheme }) {
       aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
       aria-pressed={isDark}
     >
-      <span className="theme-toggle__icon theme-toggle__icon_sun"></span>
-      <span className="theme-toggle__track">
+      <span className="theme-toggle__icon theme-toggle__icon_sun" aria-hidden="true"></span>
+      <span className="theme-toggle__track" aria-hidden="true">
         <span className="theme-toggle__thumb"></span>
       </span>
-      <span className="theme-toggle__icon theme-toggle__icon_moon"></span>
+      <span className="theme-toggle__icon theme-toggle__icon_moon" aria-hidden="true"></span>
     </button>
   );
 }
