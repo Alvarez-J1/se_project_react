@@ -137,7 +137,7 @@ export default function LoginModal({
       />
 
       {loginError && (
-        <span className="modal__error" id="loginModal__error">
+        <span className="modal__error" id="loginModal__error" role="alert">
           {loginError}
         </span>
       )}
