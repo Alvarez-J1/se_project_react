@@ -31,11 +31,16 @@ function Main({
         locationStatus={locationStatus}
         onUseMyLocation={onUseMyLocation}
       />
-      <section className={`cards cards_weather_${weatherType}`}>
+      <section
+        className={`cards cards_weather_${weatherType}`}
+        aria-labelledby="recommendationsTitle"
+      >
         <div className="cards__header">
           <div className="cards__heading-group">
             <p className="cards__eyebrow">Outfit recommendations</p>
-            <h2 className="cards__title">Your WeatherFit for today</h2>
+            <h2 className="cards__title" id="recommendationsTitle">
+              Your WeatherFit for today
+            </h2>
           </div>
         </div>
         <p className="cards__text">
