@@ -5,7 +5,10 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
   const currentUser = useContext(CurrentUserContext);
   const _id = currentUser?._id || "";
-  const isOwn = card.owner === _id;
+  const cardName = card?.name || "Selected item";
+  const cardWeather = card?.weather || "";
+  const cardId = card?._id;
+  const isOwn = card?.owner === _id;
   const isOpen = activeModal === "preview";
   const openClassName = isOpen ? "modal_opened" : "";
 
@@ -25,19 +28,19 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
           className="modal__close modal__close_type_image"
           aria-label="Close preview"
         ></button>
-        <img src={card.imageUrl} alt={card.name} className="modal__image" />
+        <img src={card?.imageUrl} alt={cardName} className="modal__image" />
         <div className="modal__footer">
           <h2 className="modal__caption" id="itemModalTitle">
-            {card.name}
+            {cardName}
           </h2>
           <p className="modal__weather" id="itemModalWeather">
-            Weather: {card.weather}
+            Weather: {cardWeather}
           </p>
           {isOwn && (
             <button
               type="button"
               className="modal__delete-btn"
-              onClick={() => onDeleteItem(card._id)}
+              onClick={() => onDeleteItem(cardId)}
             >
               Delete item
             </button>
