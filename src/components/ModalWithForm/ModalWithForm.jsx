@@ -16,12 +16,11 @@ function ModalWithForm({
   formFooter,
 }) {
   const variantAttr = variant ? `modal--${variant}` : "";
+  const openClassName = isOpen ? "modal_opened" : "";
 
   return (
     <div
-      className={`modal ${
-        isOpen && "modal_opened"
-      } ${className} ${variantAttr}`}
+      className={`modal ${openClassName} ${className} ${variantAttr}`}
     >
       <div className={`modal__content ${contentClassName}`}>
         <div className="modal__header">
