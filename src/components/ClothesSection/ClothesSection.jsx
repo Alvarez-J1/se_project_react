@@ -37,7 +37,7 @@ function ClothesSection({
   return (
     <div className="clothes-section">
       <div className="clothes-section__header">
-        <p className="clothes-section__title">Your items</p>
+        <h2 className="clothes-section__title">Your items</h2>
       </div>
       {hasUserItems ? (
         <ul className="clothes-section__items">
