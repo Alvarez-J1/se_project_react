@@ -559,7 +559,9 @@ function App() {
                     isLoggedIn={isLoggedIn}
                     isAuthChecking={isAuthChecking}
                     fallback={
-                      <div className="app__loader">Checking session...</div>
+                      <div className="app__loader" role="status">
+                        Checking session...
+                      </div>
                     }
                   >
                     <Profile
