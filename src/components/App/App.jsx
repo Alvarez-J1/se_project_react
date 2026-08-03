@@ -382,6 +382,22 @@ function App() {
     setActiveModal("");
   };
 
+  useEffect(() => {
+    if (!activeModal) return undefined;
+
+    const handleEscapeKey = (event) => {
+      if (event.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscapeKey);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKey);
+    };
+  }, [activeModal]);
+
   const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
     if (isDemoMode) {
       const newItem = {
