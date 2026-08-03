@@ -51,7 +51,7 @@ function WeatherCard({
         </div>
         <p className="weather-card__outfit-note">{outfitHint}</p>
 
-        <div className="weather-card__location-actions">
+        <div className="weather-card__location-actions" aria-live="polite">
           <button
             type="button"
             className="weather-card__location-btn"
