@@ -124,8 +124,9 @@ export default function RegisterModal({
           onChange={handleChange}
           value={values.avatar}
           autoComplete="url"
+          aria-describedby="registerModal__avatarHint"
         />
-        <span className="modal__field-hint">
+        <span className="modal__field-hint" id="registerModal__avatarHint">
           Paste a direct image URL for your profile photo.
         </span>
       </label>
