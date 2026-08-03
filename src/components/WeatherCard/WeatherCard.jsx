@@ -31,7 +31,10 @@ function WeatherCard({
     weatherData.location || weatherData.city || "Finding your location";
 
   return (
-    <section className={`weather-card weather-card_type_${weatherType}`}>
+    <section
+      className={`weather-card weather-card_type_${weatherType}`}
+      aria-busy={isWeatherLoading || isLocating}
+    >
       <div className="weather-card__content">
         <p className="weather-card__eyebrow">Today&apos;s forecast</p>
         <div className="weather-card__main">
