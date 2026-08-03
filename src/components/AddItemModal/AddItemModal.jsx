@@ -42,7 +42,7 @@ export default function AddItemModal({
       <label htmlFor="addItemModal__name" className="modal__label">
         Name
         <input
-          type="text"
+          type="url"
           className="modal__input"
           id="addItemModal__name"
           name="name"
