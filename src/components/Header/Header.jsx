@@ -69,10 +69,18 @@ function Header({
       ) : (
         // Non-authorized view
         <div className="header__auth-actions">
-          <button className="header__signup-btn" onClick={onRegisterClick}>
+          <button
+            type="button"
+            className="header__signup-btn"
+            onClick={onRegisterClick}
+          >
             Sign Up
           </button>
-          <button className="header__signin-btn" onClick={onLoginClick}>
+          <button
+            type="button"
+            className="header__signin-btn"
+            onClick={onLoginClick}
+          >
             Log In
           </button>
         </div>
