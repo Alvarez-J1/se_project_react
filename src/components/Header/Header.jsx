@@ -55,11 +55,13 @@ function Header({
               {avatar ? (
                 <img
                   src={avatar}
-                  alt="User avatar "
+                  alt=""
                   className="header__avatar"
                 />
               ) : (
-                <div className="header__avatar-placeholder">{initial}</div>
+                <div className="header__avatar-placeholder" aria-hidden="true">
+                  {initial}
+                </div>
               )}
             </div>
           </Link>
