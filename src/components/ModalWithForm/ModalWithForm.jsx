@@ -1,3 +1,4 @@
+import { useId } from "react";
 import "./ModalWithForm.css";
 
 function ModalWithForm({
@@ -17,15 +18,28 @@ function ModalWithForm({
 }) {
   const variantAttr = variant ? `modal--${variant}` : "";
   const openClassName = isOpen ? "modal_opened" : "";
+  const titleId = useId();
+  const descriptionId = useId();
 
   return (
     <div
       className={`modal ${openClassName} ${className} ${variantAttr}`}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={titleId}
+      aria-describedby={description ? descriptionId : undefined}
+      aria-hidden={!isOpen}
     >
       <div className={`modal__content ${contentClassName}`}>
         <div className="modal__header">
-          <h2 className="modal__title">{title}</h2>
-          {description && <p className="modal__description">{description}</p>}
+          <h2 className="modal__title" id={titleId}>
+            {title}
+          </h2>
+          {description && (
+            <p className="modal__description" id={descriptionId}>
+              {description}
+            </p>
+          )}
         </div>
         <button
           onClick={onClose}
