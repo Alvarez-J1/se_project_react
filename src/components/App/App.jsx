@@ -34,8 +34,10 @@ import useWeather from "../../hooks/useWeather";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
+const THEME_STORAGE_KEY = "weatherfit-theme";
+
 const getStoredTheme = () => {
-  const savedTheme = localStorage.getItem("weatherfit-theme");
+  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
 
   if (savedTheme === "light" || savedTheme === "dark") {
     return savedTheme;
@@ -339,7 +341,7 @@ function App() {
   const handleToggleTheme = () => {
     setTheme((currentTheme) => {
       const nextTheme = currentTheme === "dark" ? "light" : "dark";
-      localStorage.setItem("weatherfit-theme", nextTheme);
+      localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
       return nextTheme;
     });
   };
