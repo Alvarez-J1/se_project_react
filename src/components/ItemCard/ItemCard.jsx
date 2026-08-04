@@ -80,6 +80,7 @@ function ItemCard({ item, onCardClick, onCardLike }) {
             className={itemLikeButtonClassName}
             onClick={handleLike}
             aria-label={isLiked ? `Unlike ${item.name}` : `Like ${item.name}`}
+            aria-pressed={isLiked}
           >
             <img
               src={isLiked ? likedHeart : likeButton}
