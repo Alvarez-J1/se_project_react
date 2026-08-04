@@ -48,7 +48,11 @@ function Header({
           >
             + Add clothes
           </button>
-          <Link to="/profile" className="header__link">
+          <Link
+            to="/profile"
+            className="header__link"
+            aria-label={`View ${name || "your"} profile`}
+          >
             <div className="header__user-container">
               <p className="header__username">{name || "User"}</p>
 
