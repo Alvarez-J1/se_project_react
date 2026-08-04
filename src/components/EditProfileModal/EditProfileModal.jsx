@@ -49,6 +49,7 @@ export default function EditProfileModal({ isOpen, onClose, onEditProfile }) {
           maxLength="999"
           onChange={handleChange}
           value={values.name}
+          autoComplete="name"
         />
       </label>
       <label htmlFor="editProfileModal__avatar" className="modal__label">
@@ -63,6 +64,7 @@ export default function EditProfileModal({ isOpen, onClose, onEditProfile }) {
           maxLength="999"
           onChange={handleChange}
           value={values.avatar}
+          autoComplete="url"
         />
       </label>
     </ModalWithForm>
