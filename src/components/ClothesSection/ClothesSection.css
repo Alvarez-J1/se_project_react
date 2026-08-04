@@ -19,10 +19,6 @@
   line-height: 30px;
 }
 
-.clothes-section__empty-add-btn:hover {
-  transform: translateY(-1px);
-}
-
 .clothes-section__items {
   width: 100%;
   display: grid;
@@ -98,23 +94,6 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 23px;
-}
-
-.clothes-section__empty-add-btn {
-  min-height: 44px;
-  padding: 11px 18px;
-  border: none;
-  border-radius: 999px;
-  background: var(--button-primary-bg);
-  color: var(--button-primary-text);
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 20px;
-  box-shadow: var(--shadow-subtle);
-  transition:
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
 }
 
 .clothes-section__empty-previews {
@@ -254,10 +233,6 @@
     margin-bottom: 20px;
     font-size: 16px;
     line-height: 23px;
-  }
-
-  .clothes-section__empty-add-btn {
-    width: 100%;
   }
 
   .clothes-section__empty-previews {
