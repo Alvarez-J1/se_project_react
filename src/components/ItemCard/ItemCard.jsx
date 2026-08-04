@@ -85,6 +85,7 @@ function ItemCard({ item, onCardClick, onCardLike }) {
             <img
               src={isLiked ? likedHeart : likeButton}
               alt=""
+              aria-hidden="true"
               className="like__btn"
             />
           </button>
