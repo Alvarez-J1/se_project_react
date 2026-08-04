@@ -482,16 +482,6 @@ function App() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   getItems()
-  //     .then((data) => {
-  //       setClothingItems(data);
-  //     })
-  //     .catch((err) => {
-  //       console.error("Failed to fetch clothing items", err);
-  //     });
-  // }, []);
-
   useEffect(() => {
     setIsAuthChecking(true);
     const jwt = localStorage.getItem("jwt");
