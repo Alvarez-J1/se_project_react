@@ -1,9 +1,5 @@
 import { BASE_URL } from "./constants";
 
-function getItems() {
-  return fetch(`${BASE_URL}/items`).then(processResponse);
-}
-
 function addItem({ name, imageUrl, weather, token }) {
   return fetch(`${BASE_URL}/items`, {
     method: "POST",
@@ -52,7 +48,6 @@ function processResponse(res) {
 }
 
 export {
-  getItems,
   addItem,
   deleteItem,
   addCardLike,
