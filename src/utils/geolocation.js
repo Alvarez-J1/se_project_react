@@ -44,14 +44,6 @@ export const storeCoordinates = (coords) => {
   }
 };
 
-export const clearStoredCoordinates = () => {
-  try {
-    localStorage.removeItem(COORDS_STORAGE_KEY);
-  } catch {
-    /* ignore */
-  }
-};
-
 // Promise wrapper around navigator.geolocation.getCurrentPosition.
 export const getCurrentPosition = (options = {}) =>
   new Promise((resolve, reject) => {
