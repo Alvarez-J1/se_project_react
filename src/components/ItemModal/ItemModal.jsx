@@ -26,7 +26,7 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
           onClick={onClose}
           type="button"
           className="modal__close modal__close_type_image"
-          aria-label="Close preview"
+          aria-label={`Close ${cardName} preview`}
         ></button>
         <img src={card?.imageUrl} alt={cardName} className="modal__image" />
         <div className="modal__footer">
