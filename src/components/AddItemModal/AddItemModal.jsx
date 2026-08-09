@@ -57,7 +57,7 @@ export default function AddItemModal({
       <label htmlFor="imageUrl" className="modal__label">
         Image{" "}
         <input
-          type="text"
+          type="url"
           className="modal__input"
           name="imageUrl"
           id="imageUrl"
