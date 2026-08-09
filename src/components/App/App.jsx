@@ -395,6 +395,7 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
+    setSelectedCard({});
   };
 
   useEffect(() => {
