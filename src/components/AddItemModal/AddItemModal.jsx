@@ -67,6 +67,7 @@ export default function AddItemModal({
           maxLength="999"
           onChange={handleChange}
           value={values.imageUrl}
+          autoComplete="url"
         />
       </label>
       <fieldset className="modal__radio-buttons">
