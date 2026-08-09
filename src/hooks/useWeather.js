@@ -57,6 +57,7 @@ export default function useWeather() {
         if (!isMountedRef.current) return;
         console.error("Failed to load weather data", err);
         setError("WEATHER_FETCH_FAILED");
+        if (status) setLocationStatus(status);
       } finally {
         if (isMountedRef.current) setIsLoading(false);
       }
