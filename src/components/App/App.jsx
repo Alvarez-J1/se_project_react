@@ -438,7 +438,9 @@ function App() {
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Failed to add item", err);
+      });
   };
 
   const handleDeleteItemModalSubmit = (cardId) => {
