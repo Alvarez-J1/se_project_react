@@ -146,7 +146,11 @@ const persistLocalItemLikes = (item) => {
   const itemId = normalizeId(item._id);
   const likes = Array.isArray(item.likes) ? item.likes.map(normalizeId) : [];
 
-  likesByItemId[itemId] = likes;
+  if (likes.length > 0) {
+    likesByItemId[itemId] = likes;
+  } else {
+    delete likesByItemId[itemId];
+  }
 
   saveStoredLocalItemLikes(likesByItemId);
 };
