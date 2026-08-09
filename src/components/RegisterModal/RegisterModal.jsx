@@ -54,14 +54,14 @@ export default function RegisterModal({
         </p>
       }
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="registerModal__email" className="modal__label">
         <span className="modal__label-text">
           Email<span className="modal__required">*</span>
         </span>
         <input
           type="email"
           className="modal__input"
-          id="email"
+          id="registerModal__email"
           name="email"
           placeholder="you@example.com"
           required
