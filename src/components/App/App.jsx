@@ -456,7 +456,9 @@ function App() {
         setClothingItems(clothingItems.filter((item) => item._id !== cardId));
         closeActiveModal();
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Failed to delete item", err);
+      });
   };
 
   useEffect(() => {
