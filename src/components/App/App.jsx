@@ -109,15 +109,19 @@ const getStoredLocalItemLikes = () => {
 };
 
 const saveStoredLocalItemLikes = (likesByItemId) => {
-  if (Object.keys(likesByItemId).length === 0) {
-    localStorage.removeItem(LOCAL_ITEM_LIKES_STORAGE_KEY);
-    return;
-  }
+  try {
+    if (Object.keys(likesByItemId).length === 0) {
+      localStorage.removeItem(LOCAL_ITEM_LIKES_STORAGE_KEY);
+      return;
+    }
 
-  localStorage.setItem(
-    LOCAL_ITEM_LIKES_STORAGE_KEY,
-    JSON.stringify(likesByItemId),
-  );
+    localStorage.setItem(
+      LOCAL_ITEM_LIKES_STORAGE_KEY,
+      JSON.stringify(likesByItemId),
+    );
+  } catch {
+    /* storage may be unavailable; likes still update in memory */
+  }
 };
 
 const mergeStoredLocalLikes = (items) => {
