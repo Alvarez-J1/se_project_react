@@ -94,7 +94,11 @@ const getStoredLocalItemLikes = () => {
 
     const parsedLikes = JSON.parse(storedLikes);
 
-    if (!parsedLikes || typeof parsedLikes !== "object") {
+    if (
+      !parsedLikes ||
+      typeof parsedLikes !== "object" ||
+      Array.isArray(parsedLikes)
+    ) {
       return {};
     }
 
