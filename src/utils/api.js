@@ -44,7 +44,11 @@ function processResponse(res) {
   if (res.ok) {
     return res.json();
   }
-  return Promise.reject(`Error: ${res.status}`);
+
+  const error = new Error(`Error: ${res.status}`);
+  error.status = res.status;
+
+  return Promise.reject(error);
 }
 
 export {
