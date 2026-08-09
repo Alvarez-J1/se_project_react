@@ -35,6 +35,7 @@ import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 const THEME_STORAGE_KEY = "weatherfit-theme";
+const JWT_STORAGE_KEY = "jwt";
 
 const getStoredTheme = () => {
   const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
@@ -173,7 +174,9 @@ function App() {
     name: "",
     avatar: "",
   });
-  const [token, setToken] = useState(localStorage.getItem("jwt") || "");
+  const [token, setToken] = useState(
+    localStorage.getItem(JWT_STORAGE_KEY) || "",
+  );
   const navigate = useNavigate();
 
   const clearDemoSession = () => {
@@ -191,7 +194,7 @@ function App() {
       .then((data) => {
         if (!data?.token) return;
         return auth.checkToken(data.token).then((user) => {
-          localStorage.setItem("jwt", data.token);
+          localStorage.setItem(JWT_STORAGE_KEY, data.token);
           setToken(data.token);
           setCurrentUser(user);
           setClothingItems(mergeStoredLocalLikes(defaultClothingItems));
@@ -202,7 +205,7 @@ function App() {
         });
       })
       .catch((err) => {
-        localStorage.removeItem("jwt");
+        localStorage.removeItem(JWT_STORAGE_KEY);
         setToken("");
         setCurrentUser({ email: "", name: "", avatar: "" });
         setIsLoggedIn(false);
@@ -220,7 +223,7 @@ function App() {
           return auth
             .checkToken(data.token)
             .then((user) => {
-              localStorage.setItem("jwt", data.token);
+              localStorage.setItem(JWT_STORAGE_KEY, data.token);
               setToken(data.token);
               setCurrentUser(user);
               setClothingItems(mergeStoredLocalLikes(defaultClothingItems));
@@ -230,7 +233,7 @@ function App() {
               return data;
             })
             .catch((err) => {
-              localStorage.removeItem("jwt");
+              localStorage.removeItem(JWT_STORAGE_KEY);
               setToken("");
               setCurrentUser({ email: "", name: "", avatar: "" });
               setIsLoggedIn(false);
@@ -302,7 +305,7 @@ function App() {
       return;
     }
 
-    const jwt = token || localStorage.getItem("jwt");
+    const jwt = token || localStorage.getItem(JWT_STORAGE_KEY);
 
     if (!jwt) return;
 
@@ -322,7 +325,7 @@ function App() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("jwt");
+    localStorage.removeItem(JWT_STORAGE_KEY);
     localStorage.removeItem(DEMO_SESSION_STORAGE_KEY);
     setToken("");
     setIsDemoMode(false);
@@ -368,7 +371,7 @@ function App() {
   };
 
   const handleDemoLogin = () => {
-    localStorage.removeItem("jwt");
+    localStorage.removeItem(JWT_STORAGE_KEY);
     localStorage.setItem(DEMO_SESSION_STORAGE_KEY, "true");
     setToken("");
     setIsDemoMode(true);
@@ -486,12 +489,12 @@ function App() {
 
   useEffect(() => {
     setIsAuthChecking(true);
-    const jwt = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem(JWT_STORAGE_KEY);
     const hasDemoSession =
       localStorage.getItem(DEMO_SESSION_STORAGE_KEY) === "true";
 
     if (hasDemoSession) {
-      localStorage.removeItem("jwt");
+      localStorage.removeItem(JWT_STORAGE_KEY);
       setToken("");
       setCurrentUser(demoUser);
       setClothingItems(mergeStoredLocalLikes(demoClothingItems));
@@ -517,7 +520,7 @@ function App() {
       })
       .catch((err) => {
         console.error("Token invalid or expired", err);
-        localStorage.removeItem("jwt");
+        localStorage.removeItem(JWT_STORAGE_KEY);
         setToken("");
         setCurrentUser({ email: "", name: "", avatar: "" });
         setClothingItems(mergeStoredLocalLikes(defaultClothingItems));
