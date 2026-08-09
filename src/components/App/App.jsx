@@ -333,7 +333,9 @@ function App() {
           ),
         );
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Failed to update item like", err);
+      });
   };
 
   const handleLogout = () => {
