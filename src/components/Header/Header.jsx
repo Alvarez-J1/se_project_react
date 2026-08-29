@@ -60,6 +60,7 @@ function Header({
                 <img
                   src={avatar}
                   alt=""
+                  aria-hidden="true"
                   className="header__avatar"
                 />
               ) : (
