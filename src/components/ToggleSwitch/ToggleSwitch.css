@@ -36,6 +36,12 @@
 .toggle-switch:hover {
   border-color: var(--color-border-strong);
 }
+
+.toggle-switch:has(.toggle-switch__checkbox:focus-visible) {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
 .toggle-switch__text {
   font-weight: 700;
   font-size: 14px;
