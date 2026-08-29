@@ -66,7 +66,7 @@ export const filterWeatherData = (data, geo = {}) => {
 const getWeatherType = (temperature) => {
   if (temperature > 66) {
     return "hot";
-  } else {
-    return "cold";
   }
+
+  return "cold";
 };
