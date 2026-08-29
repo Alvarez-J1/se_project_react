@@ -14,13 +14,13 @@ function Profile({
       <section className="profile__sidebar" aria-label="Profile actions">
         <SideBar onEditProfileClick={onEditProfileClick} onLogout={onLogout} />
       </section>
-      <section className="profile__clothing-items">
+      <div className="profile__clothing-items">
         <ClothesSection
           onCardClick={onCardClick}
           clothingItems={clothingItems}
           onCardLike={onCardLike}
         />
-      </section>
+      </div>
     </div>
   );
 }

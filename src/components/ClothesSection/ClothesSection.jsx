@@ -35,9 +35,11 @@ function ClothesSection({
   const hasUserItems = userItems.length > 0;
 
   return (
-    <div className="clothes-section">
+    <section className="clothes-section" aria-labelledby="clothesSectionTitle">
       <div className="clothes-section__header">
-        <h2 className="clothes-section__title">Your items</h2>
+        <h2 className="clothes-section__title" id="clothesSectionTitle">
+          Your items
+        </h2>
       </div>
       {hasUserItems ? (
         <ul className="clothes-section__items">
@@ -102,7 +104,7 @@ function ClothesSection({
           </ul>
         </section>
       )}
-    </div>
+    </section>
   );
 }
 
