@@ -44,6 +44,9 @@ export const filterWeatherData = (data, geo = {}) => {
   const city = geo?.name || data?.name || "";
   const countryCode = data?.sys?.country || geo?.country || "";
   const state = geo?.state || "";
+  const fahrenheitTemperature = Number.isFinite(data?.main?.temp)
+    ? data.main.temp
+    : 999;
 
   result.city = city;
   result.state = state;
@@ -52,8 +55,8 @@ export const filterWeatherData = (data, geo = {}) => {
   result.location = buildLocationLabel({ city, state, countryCode });
 
   result.temp = {
-    F: Math.round(data.main.temp),
-    C: Math.round(((data.main.temp - 32) * 5) / 9),
+    F: Math.round(fahrenheitTemperature),
+    C: Math.round(((fahrenheitTemperature - 32) * 5) / 9),
   };
 
   result.type = getWeatherType(result.temp.F);
