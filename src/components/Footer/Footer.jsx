@@ -15,7 +15,8 @@ function Footer() {
             className="footer__link"
             href="https://openweathermap.org/api"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
+            aria-label="Powered by OpenWeather API, opens in a new tab"
           >
             Powered by OpenWeather API
           </a>
