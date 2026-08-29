@@ -11,9 +11,13 @@ const COORDS_STORAGE_KEY = "weatherfit-coords";
 const isValidCoordinates = (value) =>
   value &&
   typeof value.latitude === "number" &&
-  typeof value.longitude === "number" &&
-  Number.isFinite(value.latitude) &&
-  Number.isFinite(value.longitude);
+    typeof value.longitude === "number" &&
+    Number.isFinite(value.latitude) &&
+    Number.isFinite(value.longitude) &&
+    value.latitude >= -90 &&
+    value.latitude <= 90 &&
+    value.longitude >= -180 &&
+    value.longitude <= 180;
 
 // Read previously granted coordinates from localStorage (null if absent/invalid).
 export const getStoredCoordinates = () => {
