@@ -30,7 +30,7 @@ export default function LoginModal({
     e.preventDefault();
     try {
       await onLogin(values);
-      setWrongField(null);
+      setWrongField("");
       setLoginError("");
     } catch (err) {
       const status =
