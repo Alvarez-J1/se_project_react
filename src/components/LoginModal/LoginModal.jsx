@@ -46,7 +46,6 @@ export default function LoginModal({
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      type="submit"
       variant="auth"
       contentClassName="modal__content--auth modal__content--si"
       submitClassName="modal__submit--auth modal__submit--si"
