@@ -7,6 +7,11 @@ export const DEFAULT_COORDINATES = {
 };
 
 const COORDS_STORAGE_KEY = "weatherfit-coords";
+const DEFAULT_POSITION_OPTIONS = {
+  enableHighAccuracy: false,
+  timeout: 10000,
+  maximumAge: 5 * 60 * 1000,
+};
 
 const isValidCoordinates = (value) =>
   value &&
@@ -66,9 +71,7 @@ export const getCurrentPosition = (options = {}) =>
         }),
       (error) => reject(error),
       {
-        enableHighAccuracy: false,
-        timeout: 10000,
-        maximumAge: 5 * 60 * 1000,
+        ...DEFAULT_POSITION_OPTIONS,
         ...options,
       },
     );
