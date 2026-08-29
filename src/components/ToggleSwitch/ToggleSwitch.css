@@ -88,6 +88,6 @@
     background-color: var(--button-primary-bg);
     position: absolute;
     border-radius: 50%;
-    transition: all 0.2s;
+    transition: left 0.2s ease;
   }
 }
