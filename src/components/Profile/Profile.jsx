@@ -11,7 +11,7 @@ function Profile({
 }) {
   return (
     <div className="profile">
-      <section className="profile__sidebar">
+      <section className="profile__sidebar" aria-label="Profile actions">
         <SideBar onEditProfileClick={onEditProfileClick} onLogout={onLogout} />
       </section>
       <section className="profile__clothing-items">
