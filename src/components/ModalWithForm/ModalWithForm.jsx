@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useEffect, useId, useRef } from "react";
 import "./ModalWithForm.css";
 
 function ModalWithForm({
@@ -20,6 +20,15 @@ function ModalWithForm({
   const openClassName = isOpen ? "modal_opened" : "";
   const titleId = useId();
   const descriptionId = useId();
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    formRef.current
+      ?.querySelector("input, button, select, textarea")
+      ?.focus();
+  }, [isOpen]);
 
   return (
     <div
@@ -47,7 +56,7 @@ function ModalWithForm({
           className="modal__close"
           aria-label={`Close ${title} modal`}
         />
-        <form onSubmit={onSubmit} className="modal__form">
+        <form onSubmit={onSubmit} className="modal__form" ref={formRef}>
           {children}
           <button
             disabled={disabled}
