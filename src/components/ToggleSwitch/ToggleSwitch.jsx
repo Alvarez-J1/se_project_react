@@ -6,6 +6,8 @@ export default function ToggleSwitch() {
   const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(
     CurrentTemperatureUnitContext
   );
+  const nextTemperatureUnit =
+    currentTemperatureUnit === "C" ? "Fahrenheit" : "Celsius";
 
   return (
     <label className="toggle-switch">
@@ -14,7 +16,7 @@ export default function ToggleSwitch() {
         type="checkbox"
         className="toggle-switch__checkbox"
         checked={currentTemperatureUnit === "C"}
-        aria-label="Use Celsius temperature unit"
+        aria-label={`Use ${nextTemperatureUnit} temperature unit`}
       />
       <span className="toggle-switch__circle"></span>
       <span className="toggle-switch__text toggle-switch__text_F" aria-hidden="true">
