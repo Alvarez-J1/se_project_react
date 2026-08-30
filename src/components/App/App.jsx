@@ -437,7 +437,7 @@ function App() {
     api
       .addItem({ name, imageUrl, weather, token })
       .then((newItem) => {
-        setClothingItems([newItem, ...clothingItems]);
+        setClothingItems((items) => [newItem, ...items]);
         closeActiveModal();
       })
       .catch((err) => {
