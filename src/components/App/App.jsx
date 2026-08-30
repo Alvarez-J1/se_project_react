@@ -71,7 +71,9 @@ const normalizeId = (id) => (id == null ? "" : String(id));
 
 const isItemLikedByUser = (item, userId) => {
   const likes = Array.isArray(item.likes) ? item.likes : [];
-  return likes.some((id) => normalizeId(id) === userId);
+  const normalizedUserId = normalizeId(userId);
+
+  return likes.some((id) => normalizeId(id) === normalizedUserId);
 };
 
 const toggleItemLike = (item, userId) => {
