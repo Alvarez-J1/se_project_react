@@ -29,6 +29,9 @@ function WeatherCard({
 
   const locationLabel =
     weatherData.location || weatherData.city || "Finding your location";
+  const locationButtonLabel = isLocating
+    ? "Finding your location for weather"
+    : "Use my location for weather";
 
   return (
     <section
@@ -60,6 +63,7 @@ function WeatherCard({
             className="weather-card__location-btn"
             onClick={onUseMyLocation}
             disabled={isWeatherLoading || isLocating}
+            aria-label={locationButtonLabel}
           >
             {isLocating ? "Locating..." : "Use My Location"}
           </button>
