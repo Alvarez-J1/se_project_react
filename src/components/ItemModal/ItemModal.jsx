@@ -1,5 +1,5 @@
 import "./ItemModal.css";
-import { useContext } from "react";
+import { useContext, useEffect, useRef } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
@@ -11,6 +11,13 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
   const isOwn = card?.owner === _id;
   const isOpen = activeModal === "preview";
   const openClassName = isOpen ? "modal_opened" : "";
+  const closeButtonRef = useRef(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      closeButtonRef.current?.focus();
+    }
+  }, [isOpen]);
 
   return (
     <div
@@ -27,6 +34,7 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
           type="button"
           className="modal__close modal__close_type_image"
           aria-label={`Close ${cardName} preview`}
+          ref={closeButtonRef}
         ></button>
         <img
           src={card?.imageUrl}
