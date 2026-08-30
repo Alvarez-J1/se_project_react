@@ -33,6 +33,7 @@ function WeatherCard({
   return (
     <section
       className={`weather-card weather-card_type_${weatherType}`}
+      aria-labelledby="weatherCardCondition"
       aria-busy={isWeatherLoading || isLocating}
     >
       <div className="weather-card__content">
@@ -45,7 +46,9 @@ function WeatherCard({
             </span>
           </p>
           <div className="weather-card__details">
-            <h1 className="weather-card__condition">{conditionLabel}</h1>
+            <h1 className="weather-card__condition" id="weatherCardCondition">
+              {conditionLabel}
+            </h1>
             <p className="weather-card__location">{locationLabel}</p>
           </div>
         </div>
