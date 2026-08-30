@@ -25,7 +25,7 @@ function Header({
   });
   return (
     <header className="header">
-      <Link to="/" className="header__brand-link">
+      <Link to="/" className="header__brand-link" aria-label="WeatherFit home">
         <span className="header__brand-mark" aria-hidden="true">
           <span className="header__brand-cloud"></span>
           <span className="header__brand-sun"></span>
