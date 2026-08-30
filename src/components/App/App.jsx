@@ -455,7 +455,9 @@ function App() {
 
     deleteItem(cardId, token)
       .then(() => {
-        setClothingItems(clothingItems.filter((item) => item._id !== cardId));
+        setClothingItems((items) =>
+          items.filter((item) => item._id !== cardId),
+        );
         closeActiveModal();
       })
       .catch((err) => {
