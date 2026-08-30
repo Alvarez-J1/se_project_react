@@ -30,8 +30,10 @@ function ClothesSection({
   onCardLike,
 }) {
   const currentUser = useContext(CurrentUserContext);
-  const _id = currentUser?._id || "";
-  const userItems = clothingItems.filter((item) => item.owner === _id);
+  const currentUserId = String(currentUser?._id || "");
+  const userItems = clothingItems.filter(
+    (item) => String(item.owner || "") === currentUserId,
+  );
   const hasUserItems = userItems.length > 0;
 
   return (
