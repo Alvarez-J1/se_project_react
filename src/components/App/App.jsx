@@ -37,6 +37,12 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 const THEME_STORAGE_KEY = "weatherfit-theme";
 const JWT_STORAGE_KEY = "jwt";
 
+const createEmptyUser = () => ({
+  email: "",
+  name: "",
+  avatar: "",
+});
+
 const getStoredTheme = () => {
   const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
 
@@ -181,11 +187,7 @@ function App() {
   const [isDemoMode, setIsDemoMode] = useState(
     localStorage.getItem(DEMO_SESSION_STORAGE_KEY) === "true",
   );
-  const [currentUser, setCurrentUser] = useState({
-    email: "",
-    name: "",
-    avatar: "",
-  });
+  const [currentUser, setCurrentUser] = useState(createEmptyUser);
   const [token, setToken] = useState(
     localStorage.getItem(JWT_STORAGE_KEY) || "",
   );
@@ -219,7 +221,7 @@ function App() {
       .catch((err) => {
         localStorage.removeItem(JWT_STORAGE_KEY);
         setToken("");
-        setCurrentUser({ email: "", name: "", avatar: "" });
+        setCurrentUser(createEmptyUser());
         setIsLoggedIn(false);
         console.error("Registration error:", err);
         throw err;
@@ -247,7 +249,7 @@ function App() {
             .catch((err) => {
               localStorage.removeItem(JWT_STORAGE_KEY);
               setToken("");
-              setCurrentUser({ email: "", name: "", avatar: "" });
+              setCurrentUser(createEmptyUser());
               setIsLoggedIn(false);
               console.error("Token validation failed", err);
               throw err;
@@ -344,7 +346,7 @@ function App() {
     setToken("");
     setIsDemoMode(false);
     setIsLoggedIn(false);
-    setCurrentUser({ email: "", name: "", avatar: "" });
+    setCurrentUser(createEmptyUser());
     setClothingItems(mergeStoredLocalLikes(defaultClothingItems));
     navigate("/");
   };
@@ -539,7 +541,7 @@ function App() {
         console.error("Token invalid or expired", err);
         localStorage.removeItem(JWT_STORAGE_KEY);
         setToken("");
-        setCurrentUser({ email: "", name: "", avatar: "" });
+        setCurrentUser(createEmptyUser());
         setClothingItems(mergeStoredLocalLikes(defaultClothingItems));
         setIsLoggedIn(false);
       })
