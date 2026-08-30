@@ -4,11 +4,12 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
   const currentUser = useContext(CurrentUserContext);
-  const _id = currentUser?._id || "";
+  const currentUserId = String(currentUser?._id || "");
+  const ownerId = String(card?.owner || "");
   const cardName = card?.name || "Selected item";
   const cardWeather = card?.weather || "";
   const cardId = card?._id;
-  const isOwn = card?.owner === _id;
+  const isOwn = ownerId === currentUserId;
   const isOpen = activeModal === "preview";
   const openClassName = isOpen ? "modal_opened" : "";
   const closeButtonRef = useRef(null);
