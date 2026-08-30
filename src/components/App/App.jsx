@@ -67,7 +67,7 @@ const getPreferredTheme = () => {
 
 const isApiItemId = (id) => /^[a-f\d]{24}$/i.test(String(id));
 
-const normalizeId = (id) => String(id);
+const normalizeId = (id) => (id == null ? "" : String(id));
 
 const isItemLikedByUser = (item, userId) => {
   const likes = Array.isArray(item.likes) ? item.likes : [];
