@@ -7,6 +7,6 @@ export default function ProtectedRoute({
   fallback = null,
   children,
 }) {
-  if (isAuthChecking) return fallback ?? null;
+  if (isAuthChecking) return fallback;
   return isLoggedIn ? children : <Navigate to={redirectTo} replace />;
 }
