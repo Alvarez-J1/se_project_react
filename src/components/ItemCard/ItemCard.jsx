@@ -35,8 +35,9 @@ function ItemCard({ item, onCardClick, onCardLike }) {
 
   const isAuthorized = !!currentUser?._id;
   const likes = Array.isArray(item.likes) ? item.likes : [];
+  const currentUserId = String(currentUser?._id || "");
   const isLiked =
-    isAuthorized && likes.some((id) => String(id) === currentUser._id);
+    isAuthorized && likes.some((id) => String(id) === currentUserId);
   const category = item.category || inferCategory(item.name);
 
   const itemLikeButtonClassName = `card__like ${
