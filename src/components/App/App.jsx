@@ -79,12 +79,13 @@ const isItemLikedByUser = (item, userId) => {
 const toggleItemLike = (item, userId) => {
   const likes = Array.isArray(item.likes) ? item.likes : [];
   const isLiked = isItemLikedByUser(item, userId);
+  const normalizedUserId = normalizeId(userId);
 
   return {
     ...item,
     likes: isLiked
-      ? likes.filter((id) => normalizeId(id) !== userId)
-      : [...likes, userId],
+      ? likes.filter((id) => normalizeId(id) !== normalizedUserId)
+      : [...likes, normalizedUserId],
   };
 };
 
