@@ -45,6 +45,7 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
               type="button"
               className="modal__delete-btn"
               onClick={() => onDeleteItem(cardId)}
+              aria-label={`Delete ${cardName}`}
             >
               Delete item
             </button>
