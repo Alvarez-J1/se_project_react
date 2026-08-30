@@ -65,7 +65,10 @@ function WeatherCard({
           </button>
 
           {weatherError ? (
-            <p className="weather-card__location-note weather-card__location-note_error">
+            <p
+              className="weather-card__location-note weather-card__location-note_error"
+              role="alert"
+            >
               Couldn&apos;t load the latest weather. Please try again.
             </p>
           ) : locationStatus === "default" ? (
