@@ -60,7 +60,7 @@ function ItemCard({ item, onCardClick, onCardLike }) {
         onClick={handleCardClick}
         className="card__media"
         type="button"
-        aria-label={`View ${item.name}`}
+        aria-label={`View details for ${item.name}`}
       >
         <img
           className="card__image"
