@@ -45,6 +45,7 @@ function Header({
             onClick={handleAddClick}
             type="button"
             className="header__add-clothes-btn"
+            aria-label="Add clothing item"
           >
             + Add clothes
           </button>
