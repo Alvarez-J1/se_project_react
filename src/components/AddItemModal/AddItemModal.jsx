@@ -68,6 +68,8 @@ export default function AddItemModal({
           onChange={handleChange}
           value={values.imageUrl}
           autoComplete="url"
+          autoCapitalize="none"
+          spellCheck="false"
         />
       </label>
       <fieldset className="modal__radio-buttons">
