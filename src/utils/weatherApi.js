@@ -2,6 +2,7 @@ import { processResponse } from "./api";
 
 const HOT_WEATHER_THRESHOLD_F = 66;
 const FALLBACK_TEMPERATURE_F = 999;
+const REVERSE_GEOCODE_RESULT_LIMIT = 1;
 
 // Current weather for a coordinate pair (works for any location worldwide).
 export const getWeather = ({ latitude, longitude }, APIkey) => {
@@ -13,7 +14,7 @@ export const getWeather = ({ latitude, longitude }, APIkey) => {
 // Reverse geocoding gives us a precise city name plus state/country.
 export const reverseGeocode = ({ latitude, longitude }, APIkey) => {
   return fetch(
-    `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${APIkey}`,
+    `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=${REVERSE_GEOCODE_RESULT_LIMIT}&appid=${APIkey}`,
   )
     .then(processResponse)
     .then((results) =>
