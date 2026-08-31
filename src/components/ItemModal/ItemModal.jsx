@@ -8,6 +8,7 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
   const ownerId = String(card?.owner || "");
   const cardName = card?.name || "Selected item";
   const cardWeather = card?.weather || "";
+  const cardImageUrl = card?.imageUrl || "";
   const cardId = card?._id;
   const isOwn = ownerId === currentUserId;
   const isOpen = activeModal === "preview";
@@ -37,12 +38,14 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
           aria-label={`Close ${cardName} preview`}
           ref={closeButtonRef}
         ></button>
-        <img
-          src={card?.imageUrl}
-          alt={`Preview of ${cardName}`}
-          className="modal__image"
-          referrerPolicy="no-referrer"
-        />
+        {cardImageUrl && (
+          <img
+            src={cardImageUrl}
+            alt={`Preview of ${cardName}`}
+            className="modal__image"
+            referrerPolicy="no-referrer"
+          />
+        )}
         <div className="modal__footer">
           <h2 className="modal__caption" id="itemModalTitle">
             {cardName}
