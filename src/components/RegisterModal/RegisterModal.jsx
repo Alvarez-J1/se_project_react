@@ -70,6 +70,7 @@ export default function RegisterModal({
           onChange={handleChange}
           value={values.email}
           autoComplete="email"
+          autoCapitalize="none"
         />
       </label>
       <label htmlFor="registerModal__password" className="modal__label">
