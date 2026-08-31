@@ -68,6 +68,7 @@ function ItemCard({ item, onCardClick, onCardLike }) {
           alt={item.name}
           loading="lazy"
           decoding="async"
+          referrerPolicy="no-referrer"
         />
       </button>
       <div className="card__body">
