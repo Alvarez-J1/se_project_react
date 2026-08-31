@@ -91,7 +91,7 @@ function ItemCard({ item, onCardClick, onCardLike }) {
             />
           </button>
         ) : (
-          <div className="like__btn-spacer"></div>
+          <div className="like__btn-spacer" aria-hidden="true"></div>
         )}
       </div>
     </li>
