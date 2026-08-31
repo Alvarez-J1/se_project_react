@@ -5,16 +5,16 @@ const FALLBACK_TEMPERATURE_F = 999;
 const REVERSE_GEOCODE_RESULT_LIMIT = 1;
 
 // Current weather for a coordinate pair (works for any location worldwide).
-export const getWeather = ({ latitude, longitude }, APIkey) => {
+export const getWeather = ({ latitude, longitude }, apiKey) => {
   return fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`,
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`,
   ).then(processResponse);
 };
 
 // Reverse geocoding gives us a precise city name plus state/country.
-export const reverseGeocode = ({ latitude, longitude }, APIkey) => {
+export const reverseGeocode = ({ latitude, longitude }, apiKey) => {
   return fetch(
-    `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=${REVERSE_GEOCODE_RESULT_LIMIT}&appid=${APIkey}`,
+    `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=${REVERSE_GEOCODE_RESULT_LIMIT}&appid=${apiKey}`,
   )
     .then(processResponse)
     .then((results) =>
