@@ -1,6 +1,7 @@
 import { processResponse } from "./api";
 
 const HOT_WEATHER_THRESHOLD_F = 66;
+const FALLBACK_TEMPERATURE_F = 999;
 
 // Current weather for a coordinate pair (works for any location worldwide).
 export const getWeather = ({ latitude, longitude }, APIkey) => {
@@ -48,7 +49,7 @@ export const filterWeatherData = (data, geo = {}) => {
   const state = geo?.state || "";
   const fahrenheitTemperature = Number.isFinite(data?.main?.temp)
     ? data.main.temp
-    : 999;
+    : FALLBACK_TEMPERATURE_F;
 
   result.city = city;
   result.state = state;
