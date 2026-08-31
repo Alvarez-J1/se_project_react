@@ -105,25 +105,25 @@ export default function LoginModal({
         <span className="modal__label-text">
           {wrongField === "password" ? "Password needs attention" : "Password"}
         </span>
-      </label>
 
-      <input
-        type="password"
-        className={`modal__input ${
-          wrongField === "password" ? "input-error" : ""
-        }`}
-        id="loginModal__password"
-        name="password"
-        placeholder="Password"
-        required
-        minLength="1"
-        maxLength="999"
-        onChange={handleChange}
-        value={values.password}
-        autoComplete="current-password"
-        aria-invalid={wrongField === "password"}
-        aria-describedby={loginError ? "loginModal__error" : undefined}
-      />
+        <input
+          type="password"
+          className={`modal__input ${
+            wrongField === "password" ? "input-error" : ""
+          }`}
+          id="loginModal__password"
+          name="password"
+          placeholder="Password"
+          required
+          minLength="1"
+          maxLength="999"
+          onChange={handleChange}
+          value={values.password}
+          autoComplete="current-password"
+          aria-invalid={wrongField === "password"}
+          aria-describedby={loginError ? "loginModal__error" : undefined}
+        />
+      </label>
 
       {loginError && (
         <span className="modal__error" id="loginModal__error" role="alert">
