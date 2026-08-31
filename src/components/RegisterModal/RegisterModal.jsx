@@ -56,7 +56,7 @@ export default function RegisterModal({
     >
       <label htmlFor="registerModal__email" className="modal__label">
         <span className="modal__label-text">
-          Email<span className="modal__required">*</span>
+          Email<span className="modal__required" aria-hidden="true">*</span>
         </span>
         <input
           type="email"
@@ -75,7 +75,7 @@ export default function RegisterModal({
       </label>
       <label htmlFor="registerModal__password" className="modal__label">
         <span className="modal__label-text">
-          Password<span className="modal__required">*</span>
+          Password<span className="modal__required" aria-hidden="true">*</span>
         </span>
         <input
           type="password"
@@ -93,7 +93,7 @@ export default function RegisterModal({
       </label>
       <label htmlFor="registerModal__name" className="modal__label">
         <span className="modal__label-text">
-          Name<span className="modal__required">*</span>
+          Name<span className="modal__required" aria-hidden="true">*</span>
         </span>
         <input
           type="text"
@@ -111,7 +111,7 @@ export default function RegisterModal({
       </label>
       <label htmlFor="registerModal__avatar" className="modal__label">
         <span className="modal__label-text">
-          Profile image link<span className="modal__required">*</span>
+          Profile image link<span className="modal__required" aria-hidden="true">*</span>
         </span>
         <input
           type="url"
