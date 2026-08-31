@@ -41,6 +41,7 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
           src={card?.imageUrl}
           alt={`Preview of ${cardName}`}
           className="modal__image"
+          referrerPolicy="no-referrer"
         />
         <div className="modal__footer">
           <h2 className="modal__caption" id="itemModalTitle">
