@@ -65,6 +65,8 @@ export default function EditProfileModal({ isOpen, onClose, onEditProfile }) {
           onChange={handleChange}
           value={values.avatar}
           autoComplete="url"
+          autoCapitalize="none"
+          spellCheck="false"
         />
       </label>
     </ModalWithForm>
