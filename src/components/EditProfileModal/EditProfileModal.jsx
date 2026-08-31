@@ -53,7 +53,7 @@ export default function EditProfileModal({ isOpen, onClose, onEditProfile }) {
         />
       </label>
       <label htmlFor="editProfileModal__avatar" className="modal__label">
-        Avatar<span className="modal__required"> *</span>
+        Avatar
         <input
           type="url"
           className="modal__input"
