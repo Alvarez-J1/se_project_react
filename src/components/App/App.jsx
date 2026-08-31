@@ -449,9 +449,13 @@ function App() {
   };
 
   const handleDeleteItemModalSubmit = (cardId) => {
+    const normalizedCardId = normalizeId(cardId);
+
     if (isDemoMode || !isApiItemId(cardId)) {
       removeStoredLocalItemLikes(cardId);
-      setClothingItems((items) => items.filter((item) => item._id !== cardId));
+      setClothingItems((items) =>
+        items.filter((item) => normalizeId(item._id) !== normalizedCardId),
+      );
       closeActiveModal();
       return;
     }
@@ -459,7 +463,7 @@ function App() {
     deleteItem(cardId, token)
       .then(() => {
         setClothingItems((items) =>
-          items.filter((item) => item._id !== cardId),
+          items.filter((item) => normalizeId(item._id) !== normalizedCardId),
         );
         closeActiveModal();
       })
