@@ -21,7 +21,10 @@ function Footer() {
             Powered by OpenWeather API
           </a>
         </nav>
-        <p className="footer__meta">&copy; {currentYear} WeatherFit</p>
+        <p className="footer__meta">
+          &copy; <time dateTime={String(currentYear)}>{currentYear}</time>{" "}
+          WeatherFit
+        </p>
       </div>
     </footer>
   );
