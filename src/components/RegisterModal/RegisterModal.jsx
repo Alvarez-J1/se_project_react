@@ -125,6 +125,8 @@ export default function RegisterModal({
           onChange={handleChange}
           value={values.avatar}
           autoComplete="url"
+          autoCapitalize="none"
+          spellCheck="false"
           aria-describedby="registerModal__avatarHint"
         />
         <span className="modal__field-hint" id="registerModal__avatarHint">
