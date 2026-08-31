@@ -93,6 +93,7 @@ export default function LoginModal({
           onChange={handleChange}
           value={values.email}
           autoComplete="email"
+          autoCapitalize="none"
           aria-invalid={wrongField === "email"}
         />
       </label>
