@@ -10,7 +10,7 @@ function Profile({
   onLogout,
 }) {
   return (
-    <div className="profile">
+    <main className="profile">
       <section className="profile__sidebar" aria-label="Profile actions">
         <SideBar onEditProfileClick={onEditProfileClick} onLogout={onLogout} />
       </section>
@@ -21,7 +21,7 @@ function Profile({
           onCardLike={onCardLike}
         />
       </div>
-    </div>
+    </main>
   );
 }
 
