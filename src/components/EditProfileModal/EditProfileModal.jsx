@@ -37,7 +37,7 @@ export default function EditProfileModal({ isOpen, onClose, onEditProfile }) {
       submitClassName="modal__submit--dark"
     >
       <label htmlFor="editProfileModal__name" className="modal__label">
-        Name<span className="modal__required"> *</span>
+        Name<span className="modal__required" aria-hidden="true"> *</span>
         <input
           type="text"
           className="modal__input"
