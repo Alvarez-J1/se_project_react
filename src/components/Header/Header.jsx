@@ -19,10 +19,12 @@ function Header({
   const avatar = currentUser?.avatar || "";
   const initial = (name || "").charAt(0).toUpperCase();
 
-  const currentDate = new Date().toLocaleString("default", {
+  const now = new Date();
+  const currentDate = now.toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+  const currentDateTime = now.toISOString().slice(0, 10);
   return (
     <header className="header">
       <Link to="/" className="header__brand-link" aria-label="WeatherFit home">
@@ -34,7 +36,8 @@ function Header({
       </Link>
 
       <p className="header__date-and-location">
-        {currentDate}, {weatherData.city}
+        <time dateTime={currentDateTime}>{currentDate}</time>,{" "}
+        {weatherData.city}
       </p>
       <ToggleSwitch />
       <ThemeToggle theme={theme} onToggleTheme={onToggleTheme} />
