@@ -1,5 +1,7 @@
 import { processResponse } from "./api";
 
+const HOT_WEATHER_THRESHOLD_F = 66;
+
 // Current weather for a coordinate pair (works for any location worldwide).
 export const getWeather = ({ latitude, longitude }, APIkey) => {
   return fetch(
@@ -64,7 +66,7 @@ export const filterWeatherData = (data, geo = {}) => {
 };
 
 const getWeatherType = (temperature) => {
-  if (temperature > 66) {
+  if (temperature > HOT_WEATHER_THRESHOLD_F) {
     return "hot";
   }
 
